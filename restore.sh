@@ -43,9 +43,11 @@ else
   exit 1
 fi
 
-gzip -d /restore/${BACKUP_VERSION} 
+cd /restore
 
-FILE=/restore/${BACKUP_VERSION%.*}
+gzip -d ${BACKUP_VERSION} 
+
+FILE=${BACKUP_VERSION%.*}
 
 psql -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -f "$FILE" 
 
